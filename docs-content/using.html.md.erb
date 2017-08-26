@@ -7,7 +7,7 @@ This topic describes how to use Datical DB for PCF.
 
 ##<a id='using'></a> Using Datical DB for PCF
 
-Overview
+<b>Overview</b>
 Once Datical DB for PCF is installed and configured, the primary method for managing the databases supporting PCF data services is 
 with the Datical command-line called Hammer. Hammer is a command-line Datical DB interface that provides two modes of operation – 
 an immediate mode and a REPL (Read-Evaluate-Print Loop). This document describes the commands and options available. Further 
@@ -27,7 +27,7 @@ The basic syntax when in the REPL is a command followed by its options.
 In this document, required arguments are indicated with angle brackets like this: <required argument> and optional arguments are 
 indicated with square brackets like this: [optional argument].
 
-Command Options
+<b>Command Options</b>
 Many of the options are generally applicable to many commands. The options have both a short form and a long form – for example, the 
 long form of the assignContexts option is --assignContexts, but this can be shortened to -ac. 
 To get help on general options, run this command:
@@ -119,7 +119,7 @@ usage: hammer [-ac <arg>] [-al <arg>] [-amf <arg>] [-aml <arg>] [-c <arg>] [-D
                                     run time option set.
  -v,--version                       print version info. 
  
-Commands
+<b>Commands</b>
 Command Summary
 To get a list of available commands, run the help command:
 USAGE: hammer [OPTION]... [COMMAND] [JVM ARGS]...
@@ -167,14 +167,14 @@ AVAILABLE COMMANDS:
   validateStoredLogic: Compiles stored logic and reports any validation errors.
      versionChangeLog: Upgrades project changelog to the current version.
  
-add-to-property
+<i>add-to-property</i>
 Add a path to a property
 USAGE: add-to-property <path property> <new path>
 EXAMPLE: add-to-property drivers /home/user/newdrivers
 NOTES: 
 •	This command is specifically for appending a new path to an existing property that expects path values.
 
-addContexts
+<i>addContexts</i>
 Adds context attributes to a set of changesets in the changelog that are selected using a label expression. This command is used by 
 the deploy packager to indicate that a group of changesets is ready to be deployed to a new environment. 
 USAGE: addContexts --lookupChangesets=<label expression> --context=<comma separated list of contexts to add> --scriptChecksum=<SQL script checksum value> --matchAll=<true/false>
@@ -190,7 +190,7 @@ This is used primarily in the Deployment Packager to confirm that the change set
 identified by the label expression must have a scriptChecksum attribute that matches the attribute passed on the command line. If 
 matchAll is false, only one change set returned by the label expression needs to have a matching scriptChecksum attribute.
 
-addLabels
+<i>addLabels</i>
 Adds label attributes to a set of changesets in the changelog that are selected using a label expression.
 USAGE: addLabels --lookupChangesets=<label expression> --labels=<comma separated list of labels to add> --scriptChecksum=<SQL script checksum value> --matchAll=<true/false>
 Options:
@@ -205,7 +205,7 @@ This is used primarily in the Deployment Packager to confirm that the change set
 identified by the label expression must have a scriptChecksum attribute that matches the attribute passed on the command line. If 
 matchAll is false, only one change set returned by the label expression needs to have a matching scriptChecksum attribute.
 
-assignMetadata
+<i>assignMetadata</i>
 Assign metadata information to a label. Used to associate more information with a label than could be expressed in the label itself.
 The metadata is stored in the project’s associated audit database, so this command requires that an audit database has been configured 
 for the project.
@@ -214,7 +214,7 @@ Options:
   metadataLabel - Name of the label
   metadataFile  - Path to a properties file containing the metadata key-value pairs
 
-cd
+<i>cd</i>
 Change to the given directory.
 USAGE: cd <path>
 EXAMPLES:
@@ -226,7 +226,7 @@ NOTES:
 •	On Linux systems the path separator is / only.
 •	This command is only useful in REPL mode, not in immediate execution mode.
 
-changelogSync
+<i>changelogSync</i>
 Marks all change sets as having been applied to the specified database.
 USAGE: changelogSync <dbref>
 EXAMPLE: changelogSync myAppDev
@@ -234,7 +234,7 @@ NOTES:
 •	USE CAUTION!  Before running changelogSync, verify that the specified database is up to date!
 •	Running changelogSync against a database that is not complete can lead to future deployment failures.
 
-checkRules
+<i>checkRules</i>
 Compiles rules and reports any errors.
 USAGE: checkRules [rules folder]
 EXAMPLE: checkRules PreForecast 
@@ -244,7 +244,7 @@ OPTIONAL ARGUMENTS:
 NOTES: 
 •	This command requires that the current directory is a valid Datical DB project directory.
 
-checkdrivers
+<i>checkdrivers</i>
 The checkdrivers command checks that JDBC driver jars are installed or on the specified paths. 
 USAGE: checkdrivers
 NOTES:
@@ -255,7 +255,7 @@ NOTES:
 2.	using the command set property drivers <path-to-drivers>
 •	For more information on setting the drivers property, type help set property
 
-clearCheckSums
+<i>clearCheckSums</i>
 The clearCheckSums command deletes the checksums used to detect altered change sets from the tracking tables.
 USAGE: clearCheckSums <dbref>
 EXAMPLE: clearCheckSums myAppDevDB
@@ -266,7 +266,7 @@ NOTES:
 •	The check sums will be recreated on the next deploy or changeLogSync command.
 •	This command should only be used by very experienced users, or under the direction of a Datical Support Engineer.
 
-dbshow
+<i>dbshow</i>
 The dbshow command lists the name, URL, database name, alternate schema and default context associated with all or a subset of database 
 references in a project.
 USAGE: dbshow [ref1] [ref2] [ref3]
@@ -275,7 +275,7 @@ NOTES:
 •	If the command is passed without parameters, information will be displayed for all database references in a project.
 •	To obtain information on a subset of database references, include the names of those database references as command line parameters.
 
-deploy
+<i>deploy</i>
 The deploy command deploys all change sets that have not been applied to the indicated database reference in the project.
 USAGE: deploy <dbref> [--log=/path/to/log] [--report=/path/to/report]
        [--context=context1,context2] [--labels=<label expression>]
@@ -289,7 +289,7 @@ OPTIONAL PARAMETERS:
 •	--context - When set, only change sets marked with the contexts specified will be executed.  To run all contexts, specify $all.
 •	–labels – When set, only change sets marked with the label expression will be executed.  To run all labels, specify $all.
 
-deploy-autoRollBack
+<i>deploy-autoRollBack</i>
 Deploy to the target database with the latest schema revision; if an error occurs, rollback to the revision before the command was given.
 USAGE: deploy-autoRollBack <dbref> [--log=/path/to/log] [--report=/path/to/report] 
        [--context=context1,context2] [--labels=<label expression>] [--force]
@@ -305,7 +305,7 @@ OPTIONAL PARAMETERS:
 •	--force - When set, deployOrAutoRollback will attempt the update even if Datical DB detects change sets that cannot be rolled back.  
   USE CAUTION!
 
-diff
+<i>diff</i>
 The diff command compares two database references in a project and produces a text report of the differences.
 USAGE: diff <referenceDB> <targetDb> [--output=/path/to/report]
 EXAMPLE: diff myAppDevDB myAppQaDB --output=/home/user/diffReports/diffReport.txt
@@ -337,10 +337,10 @@ NOTES:
 •	The referenceDB is the database that represents the state the user wants to reach.
 •	The targetDB is the database that is out of synchronization and needs to be caught up to the state of the referenceDB.
 
-exit
+<i>exit</i>
 Exits the REPL command line.
 
-forecast
+<i>forecast</i>
 Simulate unexecuted change sets against the specified database.
 USAGE: forecast <dbref> [--log=/path/to/log] [--report=/path/to/report]
        [--context=context1,context2] [--labels=<label expression>]
@@ -352,7 +352,7 @@ OPTIONAL PARAMETERS:
 •	--context - Only change sets marked with the contexts specified will be executed.  To run all contexts, specify $all.
 •	–labels – When set, only change sets marked with the label expression will be executed.  To run all labels, specify $all.
 
-groovy
+<i>groovy</i>
 Allows the execution of a groovy file.
 USAGE: groovy <script.groovy> <optional arguments to script>
 EXAMPLES: groovy myScript.groovy
@@ -367,7 +367,7 @@ EXAMPLES:
 2.	DaticalDB.help(project, ["groovy"])
 3.	DaticalDB.show(project, ["dbprop", "myProject", "enableStorageOptions"])
 
-help
+<i>help</i>
 Print help on available commands.
 USAGE: help OR help <command_name>
 EXAMPLE: help diff
@@ -376,7 +376,7 @@ OPTIONAL ARGUMENTS:
 NOTES: 
 •	When executed without an argument, all available commands are listed with a brief description.
 
-history
+<i>history</i>
 Show the change set execution history for the specified DbDef. 
 DEPRECATED – use the statusDetails command for more detailed information.
 USAGE: history <DbDef_Name>
@@ -384,7 +384,7 @@ EXAMPLE: history MyAppQA
 ARGUMENTS: 
 •	DbDef_Name - Name of a DbDef from the current project.
 
-insertSavedAuditData
+<i>insertSavedAuditData</i>
 Insert all audit entries temporarily saved in the project into the user-configured Audit DB.
 There may be times when an operation (such as a deploy) is performed, but there is some condition that prevents audit information 
 from being written to the project’s configured audit database. In that case, Datical DB will save the information that would be written
@@ -413,7 +413,7 @@ Extracted Archive (Windows and Linux examples):
                file:/C:/Users/Pete/DaticalDBCompositeRepo-3.75.2255/
                file:/home/Pete/DaticalDBCompositeRepo-3.75.2255/
 
-installLicense
+<i>installLicense</i>
 Install a license file to allow continued use of Datical DB.
 USAGE: installLicense <path_to_license>
 EXAMPLE: installLicense /home/datical/datdb.lic
@@ -422,15 +422,15 @@ ARGUMENTS:
 NOTES: 
 •	If you need to obtain or renew a license please contact support@datical.com.
 
-ls
+<i>ls</i>
 List files and directories in the current directory.
 USAGE: ls
 
-pwd
+<i>pwd</i>
 Show the current directory.
 USAGE: pwd
 
-rollback
+<i>rollback</i>
 Roll the target database back to a given revision, date or by number of steps.
 USAGE:
 rollback <dbdef> lastlabel
@@ -455,11 +455,11 @@ ARGUMENTS:
 •	date - Date boundary used to determine which change sets will be reverted.  Format: yyyy-MM-dd
 •	tag - Datical tag name to which you wish to rollback. Requires that you tag the database in a previous change set.
 
-schemaStats
+<i>schemaStats</i>
 Display summary info about the database model represented by the changelog.
 USAGE: schemaStats
 
-set
+<i>set</i>
 Set properties, database definitions, etc. Usage of the set command requires a subcommand and then one or more arguments. 
 Most of the set commands have corresponding show commands.
 AVAILABLE SUBCOMMANDS:
@@ -529,7 +529,7 @@ AVAILABLE SUBCOMMANDS:
   The set command also supports showing additional help for the sub-commands.
   USAGE: set help <subcommand>
 
-show
+<i>show</i>
 Display project properties, database definitions, etc. Most of the show commands have corresponding set commands.
 AVAILABLE SUBCOMMANDS:
   autoGenSQL – show whether the project will automatically generate SQL when performing a deploy operation. 
@@ -587,7 +587,8 @@ AVAILABLE SUBCOMMANDS:
   version - This command will show version information for the different components that make up the product.
   USAGE: show version
          
-snapshot - Captures a snapshot of a database as either a persistent object file or as a Liquibase changelog.
+<i>snapshot</i>
+Captures a snapshot of a database as either a persistent object file or as a Liquibase changelog.
 USAGE: snapshot deploymentStep> [--output=/path/to/snapshot/dir]
 EXAMPLE: snapshot myAppDevDB  --output=/home/user/snapshots/
   OPTIONAL PARAMETERS:
@@ -597,7 +598,7 @@ EXAMPLE: snapshot myAppDevDB  --output=/home/user/snapshots/
   •	If the current project is set to externalize stored logic, that stored logic will be written to a Resources directory within the 
     date stamped directory created by the snapshot process.
 
-status
+<i>status</i>
 Show the deployment status of a database.
 USAGE: status [DbRef]
 EXAMPLE: status myDbRef
@@ -607,29 +608,29 @@ NOTES:
 •	If provided without an argument, status information will be displayed for all Database References in the Deployment Plan.  
   Alternatively, the user can specify a single Database Reference for which they would like status information.
 
-statusDetails
+<i>statusDetails</i>
 The ‘statusDetails’ command will display a breakdown of the execution status of every Change Set in the Change Log for the Database 
 Reference specified. Change Sets are broken into three categories: Deployed, Undeployed, Ignored.
 USAGE: statusDetails <DbRef>
 EXAMPLE: statusDetails MyDBRef
 
-testConnect
+<i>testConnect</i>
 The testConnect command tests the database connection for one or more databases.
 USAGE: testConnect <DbRef>
 EXAMPLE: testConnect MyDBRef
 
-uninstallDrivers
+<i>uninstallDrivers</i>
          
-uninstallLicense
+<i>uninstallLicense</i>
 Uninstalls the Datical DB Product License
 USAGE: uninstallLicense
 
-validateStoredLogic
+<i>validateStoredLogic</i>
 Compiles stored logic and reports any validation errors.
 USAGE: validateStoredLogic <dbref> 
 EXAMPLE: validateStoredLogic <dbref> 
          
-versionChangeLog
+<i>versionChangeLog</i>
 Upgrades project changelog to the current version.
 USAGE: versionChangeLog
 EXAMPLE: versionChangeLog
@@ -637,7 +638,7 @@ NOTES:
 •	This command requires that the current directory is a valid Datical DB project directory.
 •	This command can only be used to UPGRADE the Change Log version.  Downgrading the version is not supported.
 
-create
+<i>create</i>
 Create various project artifacts. 
 AVAILABLE SUBCOMMANDS:
   DbDef
@@ -672,7 +673,7 @@ AVAILABLE KEYS FOR JSON FILE:
   13.	defaultSchemaName - The name of the schema/catalog you wish to manage.
   14.	contexts - A comma separated list of contexts to associate with the new dbDef.
 
-newDbDef
+<i>newDbDef</i>
 NOT LISTED IN HELP
 Creates a new dbDef based on the key/value pairs specified as arguments.
 USAGE: newDbDef DbDefClass <value> name <value> hostname <value> port <value> username <value> password <value> database <value>
@@ -692,7 +693,7 @@ AVAILABLE KEYS:
   13.	defaultSchemaName - The name of the schema/catalog you wish to manage.
   14.	contexts - A comma separated list of contexts to associate with the new dbDef.
 
-newProject
+<i>newProject</i>
 NOT LISTED IN HELP
 Creates a new empty project in the current directory.
 USAGE: newProject [projectName]
