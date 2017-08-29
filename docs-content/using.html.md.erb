@@ -7,12 +7,12 @@ This topic describes how to use Datical DB for PCF.
 
 ##<a id='overview'></a>Overview
 After Datical DB for PCF is installed and configured, the primary method for managing the databases supporting PCF data services is 
-with the Datical command-line called Hammer. 
+with the Datical command-line called hammer. 
 
 Hammer is a command-line Datical DB interface that provides two modes of operation:
 
 * An immediate mode
-* REPL (Read-Evaluate-Print Loop). 
+* REPL (Read-Evaluate-Print Loop) 
 
 This topic describes the commands and options available.
 For more information, see www.support.datical.com.
@@ -32,13 +32,13 @@ Datical DB datical>cd MyNewPlan
 Datical DB [MyNewPlan]> </pre>
 
 The basic syntax when in the REPL is a command followed by its options.
-In this document, required arguments are indicated with uppercase variables like this: <code>REQUIRED-ARGUMENT</code> and optional 
-arguments are indicated with variables in square brackets like this: <code>OPTIONAL-ARGUMENT]</code>.
+In this document, required arguments are indicated with uppercase variables like this: <code>-OPTION \<REQUIRED-ARGUMENT\></code>
+and optional arguments are indicated with options and variables in square brackets like this: <code>[-OPTION \<ARGUMENT\>]</code>.
 
 ##<a id='command-options'></a>Command Options
 
-Many of the options are generally applicable to many commands. The options have both a short form and a long form – for example, the 
-long form of the assignContexts option is <code>--assignContexts</code>, but this can be shortened to <code>-ac</code>. 
+Many of the options are generally applicable to many commands. The options have both a short form and a long form — for example, the 
+long form of the <code>assignContexts</code> option is <code>--assignContexts</code>, but this can be shortened to <code>-ac</code>. 
 
 To get help on general options, run this command:
 <pre>hammer help options</pre>
@@ -136,8 +136,7 @@ usage: hammer [-ac &lt;arg&gt;] [-al &lt;arg&gt;] [-amf &lt;arg&gt;] [-aml &lt;a
  
 ##<a id='commands'></a>Commands
 
-Command Summary
-To get a list of available commands, run the help command:
+To get a list of available commands, run the <code>help</code> command:
 <pre class='terminal'>
 USAGE: hammer [OPTION]... [COMMAND] [JVM ARGS]...
 Use help options for available options.
@@ -185,4 +184,4 @@ AVAILABLE COMMANDS:
      versionChangeLog: Upgrades project changelog to the current version.
  </pre>
 
-For detail on each Command, including usage and examples, please refer to Datical DB - User Guide - CLI v4.23 at https://software.datical.com/.
+For more information about each command, including usage and examples, see [Datical DB - User Guide - CLI v4.23](https://software.datical.com/).
