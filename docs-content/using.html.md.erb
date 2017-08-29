@@ -7,8 +7,9 @@ This topic describes how to use Datical DB for PCF.
 
 ##<a id='using'></a> Using Datical DB for PCF
 
-<b>Overview</b>
-Once Datical DB for PCF is installed and configured, the primary method for managing the databases supporting PCF data services is 
+###<a id='overview'></a>Overview
+
+After Datical DB for PCF is installed and configured, the primary method for managing the databases supporting PCF data services is 
 with the Datical command-line called Hammer. Hammer is a command-line Datical DB interface that provides two modes of operation – 
 an immediate mode and a REPL (Read-Evaluate-Print Loop). This document describes the commands and options available. Further 
 documentation on working with Datical DB is available at www.support.datical.com.
@@ -27,7 +28,8 @@ The basic syntax when in the REPL is a command followed by its options.
 In this document, required arguments are indicated with angle brackets like this: <required argument> and optional arguments are 
 indicated with square brackets like this: [optional argument].
 
-<b>Command Options</b>
+###<a id='command-options'></a>Command Options
+
 Many of the options are generally applicable to many commands. The options have both a short form and a long form – for example, the 
 long form of the assignContexts option is --assignContexts, but this can be shortened to -ac. 
 To get help on general options, run this command:
@@ -119,7 +121,8 @@ usage: hammer [-ac <arg>] [-al <arg>] [-amf <arg>] [-aml <arg>] [-c <arg>] [-D
                                     run time option set.
  -v,--version                       print version info. 
  
-<b>Commands</b>
+###<a id='commands'></a>Commands
+
 Command Summary
 To get a list of available commands, run the help command:
 USAGE: hammer [OPTION]... [COMMAND] [JVM ARGS]...
