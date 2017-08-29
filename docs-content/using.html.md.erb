@@ -5,22 +5,27 @@ owner: Partners
 
 This topic describes how to use Datical DB for PCF.
 
-##<a id='using'></a> Using Datical DB for PCF
-
-
-###<a id='overview'></a>Overview
+##<a id='overview'></a>Overview
 After Datical DB for PCF is installed and configured, the primary method for managing the databases supporting PCF data services is 
 with the Datical command-line called Hammer. 
 
-Hammer is a command-line Datical DB interface that provides two modes of operation – an immediate mode and a REPL (Read-Evaluate-Print Loop). 
-This document describes the commands and options available. Further documentation on working with Datical DB is available at www.support.datical.com.
+Hammer is a command-line Datical DB interface that provides two modes of operation:
 
+* An immediate mode
+* REPL (Read-Evaluate-Print Loop). 
+
+This topic describes the commands and options available.
+For more information, see www.support.datical.com.
+
+##<a id='immediate'></a>Immediate Mode Syntax
 
 The basic syntax when running hammer in immediate mode is:
 <pre class='code'>hammer [option]… [command] [JVM args]…</pre>
 
-To start the REPL, just run hammer with no arguments. When in the REPL, the prompt will show the current directory. If the current 
-directory contains a Datical DB project, the prompt will indicate that as well
+##<a id='repl'></a>REPL
+
+To start the REPL, run hammer with no arguments. When in the REPL, the prompt shows the current directory. If the current 
+directory contains a Datical DB project, the prompt indicates that as well.
 <pre class='code'>Datical DB datical>pwd
 /home/steve/datical
 Datical DB datical>cd MyNewPlan
@@ -278,7 +283,7 @@ EXAMPLE: <code>checkRules PreForecast</code>
 OPTIONAL ARGUMENTS: 
 
 * rulesFolder - when specified, this must be one of the three standard sub-folders of the projects Rules folder (PreForecast, Forecast, 
-  or PostForecast). If not specified, then all three sets of rules will be compiled.
+  or PostForecast). If not specified, then all three sets of rules are compiled.
 
 NOTES: 
 
@@ -306,7 +311,7 @@ NOTES:
 * This command is useful when an existing object is changed in the database outside of Datical DB.
 * It allows the user to update the change set that creates all of the objects in the database schema and clear the existing check sums 
   to avoid validation errors.
-* The check sums will be recreated on the next deploy or changeLogSync command.
+* The check sums are recreated on the next deploy or changeLogSync command.
 * This command should only be used by very experienced users, or under the direction of a Datical Support Engineer.
 
 <i>dbshow</i> - The dbshow command lists the name, URL, database name, alternate schema and default context associated with all or a subset of database 
@@ -317,7 +322,7 @@ USAGE: <code>dbshow [ref1] [ref2] [ref3]</code>
 EXAMPLE: <code>dbshow DEVDb QADb STAGEDb</code>
 
 NOTES:
-* If the command is passed without parameters, information will be displayed for all database references in a project.
+* If the command is passed without parameters, information is displayed for all database references in a project.
 * To obtain information on a subset of database references, include the names of those database references as command line parameters.
 
 <i>deploy</i> - The deploy command deploys all change sets that have not been applied to the indicated database reference in the project.
@@ -329,11 +334,11 @@ EXAMPLE: deploy myAppDevDb --log=/home/user/daticallogs/
           --labels="JUN AND (poolApp or beachApp)"
 
 OPTIONAL PARAMETERS: 
-* --log - When set, the daticaldb.log file will be written to the directory specified.  Log is written to Logs directory of project by 
+* --log - When set, the daticaldb.log file is written to the directory specified.  Log is written to Logs directory of project by 
   default. 
-* --report - When set, deploy report will be written to the directory specified. Report is written to the Reports directory by default.
-* --context - When set, only change sets marked with the contexts specified will be executed.  To run all contexts, specify $all.
-* –labels – When set, only change sets marked with the label expression will be executed.  To run all labels, specify $all.
+* --report - When set, deploy report is written to the directory specified. Report is written to the Reports directory by default.
+* --context - When set, only change sets marked with the contexts specified is executed.  To run all contexts, specify $all.
+* –labels – When set, only change sets marked with the label expression is executed.  To run all labels, specify $all.
 
 <i>deploy-autoRollBack</i> - Deploy to the target database with the latest schema revision; if an error occurs, rollback to the revision before the command was given.
 
@@ -345,12 +350,12 @@ EXAMPLE: <code>deploy-autoRollBack myAppDevDb --log=/home/user/daticallogs/
           --labels="JUN AND (poolApp or beachApp)"</code>
 
 OPTIONAL PARAMETERS:
-* --log - When set, the daticaldb.log file will be written to the directory specified.  Log is written to Logs directory of project by 
+* --log - When set, the daticaldb.log file is written to the directory specified.  Log is written to Logs directory of project by 
   default.
-* --report - When set, deploy report will be written to the directory specified.  Report is written to the Reports directory by default.
-* --context - When set, only change sets marked with the contexts specified will be executed.  To run all contexts, specify $all.
-* –labels – When set, only change sets marked with the label expression will be executed.  To run all labels, specify $all.
-* --force - When set, deployOrAutoRollback will attempt the update even if Datical DB detects change sets that cannot be rolled back.  
+* --report - When set, deploy report is written to the directory specified.  Report is written to the Reports directory by default.
+* --context - When set, only change sets marked with the contexts specified is executed.  To run all contexts, specify $all.
+* –labels – When set, only change sets marked with the label expression is executed.  To run all labels, specify $all.
+* --force - When set, deployOrAutoRollback attempts the update even if Datical DB detects change sets that cannot be rolled back.  
   USE CAUTION!
 
 <i>diff</i> - The diff command compares two database references in a project and produces a text report of the differences.
@@ -360,8 +365,8 @@ USAGE: <code>diff <referenceDB> <targetDb> [--output=/path/to/report]</code>
 EXAMPLE: <code>diff myAppDevDB myAppQaDB --output=/home/user/diffReports/diffReport.txt</code>
 
 OPTIONAL PARAMETERS:
-* --output - When present, the report generated by this command will be written to the specified file.  If no output is specified, 
-  the report will be written to STDOUT
+* --output - When present, the report generated by this command is written to the specified file.  If no output is specified, 
+  the report is written to STDOUT
 
 NOTES:
 * The referenceDB is the database that represents the state the user wants to reach.
@@ -378,14 +383,14 @@ EXAMPLE: <code> myAppDevDB myAppQaDB
          --genSQL</code>
 
 OPTIONAL PARAMETERS:
-* --output - When present, the change log generated by this command will be written to the specified file. The value should end with an 
+* --output - When present, the change log generated by this command is written to the specified file. The value should end with an 
   .xml file extension. If no output is specified this file is written to the Report/DiffChangeLogs directory of the project.
-* --assignLabels   - All the change sets created by the command will have this set of labels applied. Accepts a comma separated list of 
+* --assignLabels   - All the change sets created by the command have this set of labels applied. Accepts a comma separated list of 
   labels.
-* --assignContexts - All the change sets created by the command will have this set of contexts applied. Accepts a complex context 
+* --assignContexts - All the change sets created by the command have this set of contexts applied. Accepts a complex context 
   expression.
-* –genSQL -  Generate a SQL file that corresponds to the changeset that gets created. The SQL file will have the same name as the 
-  changelog but will end in “.sql”.
+* –genSQL -  Generate a SQL file that corresponds to the changeset that gets created. The SQL file has the same name as the 
+  changelog but ends in “.sql”.
 
 NOTES:
 * The referenceDB is the database that represents the state the user wants to reach.
@@ -404,8 +409,8 @@ EXAMPLE: <code>forecast myAppDevDb --log=/home/user/logs/ --report=/home/user/re
 OPTIONAL PARAMETERS:
 * --log - Location to write the daticaldb.log file. Log is written to Logs directory of project by default.
 * --report - Location to write the forecast report. Report is written to the Reports directory by default.
-* --context - Only change sets marked with the contexts specified will be executed.  To run all contexts, specify $all.
-* –labels – When set, only change sets marked with the label expression will be executed.  To run all labels, specify $all.
+* --context - Only change sets marked with the contexts specified are executed.  To run all contexts, specify $all.
+* –labels – When set, only change sets marked with the label expression are executed.  To run all labels, specify $all.
 
 <i>groovy</i> - Allows the execution of a groovy file.
 
@@ -451,7 +456,7 @@ ARGUMENTS:
 
 <i>insertSavedAuditData</i> - Insert all audit entries temporarily saved in the project into the user-configured Audit DB.
 There may be times when an operation (such as a deploy) is performed, but there is some condition that prevents audit information 
-from being written to the project’s configured audit database. In that case, Datical DB will save the information that would be written
+from being written to the project’s configured audit database. In that case, Datical DB saves the information that would be written
 to the audit database into a temporary on-disk database. This command can be used to migrate the on-disk data to the configured audit 
 database once connectivity to the audit database has been restored.
 
@@ -463,7 +468,7 @@ OPTIONAL PARAMETERS:
 * --project - Path to the project for which you would like to insert all saved Audit DB entries.
 
 NOTE: 
-* If invoked without an argument the command will attempt to execute in the current directory.
+* If invoked without an argument the command attempts to execute in the current directory.
 
 <i>installDrivers</i> - Install OSGi packaged JDBC drivers from the provided update site for use by the Datical DB REPL.
 
@@ -511,13 +516,13 @@ rollback <dbdef> tag:<tag_name>
 rollback <dbdef> lastDeploy</pre>
 
 MODES:
-* lastlabel - this will roll back the database to remove all changes associated with the last label deployed. Certain preconditions 
+* lastlabel - this rolls back the database to remove all changes associated with the last label deployed. Certain preconditions 
   must be met for this mode to succeed.
 * changeid - Rollback to a specific change set in the change log.
 * count - Rollback the last n change sets.
 * date - Rollback all change sets applied after the specified date.
 * tag - Rollback to the specified tag if one has been specified in a previous change set.
-* lastDeploy – this will roll back the database to remove all changes associated with the last deploy. This feature was added in 
+* lastDeploy – this rolls back the database to remove all changes associated with the last deploy. This feature was added in 
   version 3.85 so any deploys prior to that version are exempt from this option.
 
 ARGUMENTS:
@@ -565,9 +570,9 @@ AVAILABLE SUBCOMMANDS:
 * deployThreshold – controls what happens when a full deploy detects errors or warnings in rules or in forecast.
   
   USAGE: <code>set deployThrehold <stopOnError | stopOnWarn | deployAlways></code>
-  * stopOnError - Deployment will not be performed when errors are present in Pre-Deployment validation
-  * stopOnWarn - Deployment will not be performed when errors and/or Warnings are present in Pre-Deployment validation
-  * deployAlways - Deploy will occur regardless of validation results. NOT RECOMMENDED
+  * stopOnError - Deployment is not performed when errors are present in Pre-Deployment validation
+  * stopOnWarn - Deployment is not performed when errors and/or Warnings are present in Pre-Deployment validation
+  * deployAlways - Deploy occurs regardless of validation results. NOT RECOMMENDED
   
 * externalStoredLogic - Set whether stored logic definitions (stored procedures, etc.) are stored in external files or within the 
   project changelog.
@@ -577,15 +582,15 @@ AVAILABLE SUBCOMMANDS:
 * forecastDML – Controls whether Datical DB attempts to forecast DML (Data Modifcation Language) changes.
   
   USAGE: <code>set forecastDML <true | false></code>
-  * When set to true, forecast operations that include a DML change will predict whether that change will be successful or not. When set 
-  to false, forecast operations will report a warning that the change will not be forecast. 
+  * When set to true, forecast operations that include a DML change predict whether that change will be successful or not. When set 
+  to false, forecast operations report a warning that the change will not be forecast. 
 
 * invalidsCheck – controls how Datical DB checks the validity of stored logic after deploy.
   
   USAGE: <code>set invalidsCheck <disabled | local | global></code>
-  * disabled - Deployment will not perform the Stored Logic Validity Check.
-  * local - Deployment will perform the Stored Logic Validity Check on the target schema only.
-  * global - Deployment will perform the Stored Logic Validity Check on all schema in the database.
+  * disabled - Deployment does not perform the Stored Logic Validity Check.
+  * local - Deployment performs the Stored Logic Validity Check on the target schema only.
+  * global - Deployment performs the Stored Logic Validity Check on all schema in the database.
 
 * limitForecast – Controls how Datical DB behaves during forecast operations. This command allows you to speed up Forecast operations 
   by limiting object profiling to the objects impacted by the operation.
@@ -608,7 +613,7 @@ AVAILABLE SUBCOMMANDS:
   USAGE:  <code>set requireOptions <true | false></code>
 
 * runtimeCredentials – running this command switches the project setting ‘runtimeCredentails’ to the provided value. In addition, each 
-  of the database connections specified in the project will also be converted to either have credentials stored in the project file, or 
+  of the database connections specified in the project are converted to either have credentials stored in the project file, or 
   to a setting where each operation that requires a connection to a database specify the connection credentials. When this setting is 
   true, database connection credentials can be supplied in several different ways – interactively from the GUI or command line, 
   supplied on the command line as arguments, or specified using environment variables. 
@@ -622,7 +627,7 @@ AVAILABLE SUBCOMMANDS:
 <i>show</i> - Display project properties, database definitions, etc. Most of the show commands have corresponding set commands.
 
 AVAILABLE SUBCOMMANDS:
-* autoGenSQL – show whether the project will automatically generate SQL when performing a deploy operation. 
+* autoGenSQL – show whether the project automatically generates SQL when performing a deploy operation. 
 	
   USAGE: <code>show autoGenSQL</code>
 	
@@ -667,7 +672,7 @@ AVAILABLE SUBCOMMANDS:
   
   USAGE: <code>show languages</code>
 
-* license - This command will show the status of the licenses.
+* license - This command shows the status of the licenses.
   
   USAGE: <code>show license</code>
 
@@ -679,7 +684,7 @@ AVAILABLE SUBCOMMANDS:
   
   USAGE: <code>show properties</code>
 
-* property - This command will show the value of the given propertyname.
+* property - This command shows the value of the given propertyname.
   
   USAGE: <code>show property [propertyName]</code>
 
@@ -691,7 +696,7 @@ AVAILABLE SUBCOMMANDS:
   
   USAGE: <code>show autoGenSQL</code>
 
-* version - This command will show version information for the different components that make up the product.
+* version - This command shows version information for the different components that make up the product.
   
   USAGE: <code>show version</code>
          
@@ -702,11 +707,11 @@ USAGE: <code>snapshot deploymentStep> [--output=/path/to/snapshot/dir]</code>
 EXAMPLE: <code>snapshot myAppDevDB  --output=/home/user/snapshots/</code>
 
 OPTIONAL PARAMETERS:
-* --output - When present, the change log generated by this command will be written to the specified directory. If no output is 
+* --output - When present, the change log generated by this command is written to the specified directory. If no output is 
     specified this file is written to the Snapshots directory of the project.
 
 NOTES:
-* If the current project is set to externalize stored logic, that stored logic will be written to a Resources directory within the 
+* If the current project is set to externalize stored logic, that stored logic is written to a Resources directory within the 
   date stamped directory created by the snapshot process.
 
 <i>status</i> - Show the deployment status of a database.
@@ -719,10 +724,10 @@ OPTIONAL PARAMETERS:
 * DbRef – The name of the Database Reference for which the status should be determined
 
 NOTES:
-* If provided without an argument, status information will be displayed for all Database References in the Deployment Plan.  
+* If provided without an argument, status information is displayed for all Database References in the Deployment Plan.  
   Alternatively, the user can specify a single Database Reference for which they would like status information.
 
-<i>statusDetails</i> - The ‘statusDetails’ command will display a breakdown of the execution status of every Change Set in the Change Log for the Database 
+<i>statusDetails</i> - The ‘statusDetails’ command displays a breakdown of the execution status of every Change Set in the Change Log for the Database 
 Reference specified. Change Sets are broken into three categories: Deployed, Undeployed, Ignored.
 
 USAGE: <code>statusDetails <DbRef></code>
@@ -823,7 +828,7 @@ USAGE: <code>newProject [projectName]</code>
 EXAMPLE: <code>newProject myNewProject</code>
 
 OPTIONAL ARGUMENTS: 
-* projectName - When present, the new project will be created with the name specified. Otherwise, the new project will be called 
+* projectName - When present, the new project is created with the name specified. Otherwise, the new project is called 
     newProject.
 
 NOTES:
